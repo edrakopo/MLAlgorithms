@@ -1,0 +1,5 @@
+Best: -1265.917160 using {'batch_size': 5, 'epochs': 10}
+Best: -1074.285184 using {'init_mode': 'normal', 'optimizer': 'Adamax'}
+Best: -1031.186798 using {'activation': 'relu', 'neurons1': 25}
+Best: -1300.631455 using {'neurons2': 25}
+

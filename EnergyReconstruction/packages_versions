@@ -1,0 +1,11 @@
+These scripts have been tested with:
+
+python3: 3.4.9
+and pip3 --version: pip 8.1.2 from /usr/lib/python3.4/site-packages (python 3.4)
+
+Packages:                        Install using:
+numpy: 1.16.2                    pip3 install numpy
+pandas: 0.23.3                   pip3 install pandas
+tensorflow: 1.13.1               pip3 install --user --upgrade tensorflow
+matplotlib: 2.2.2                pip3 install matplotlib
+sklearn: 0.19.1                  pip3 install sklearn

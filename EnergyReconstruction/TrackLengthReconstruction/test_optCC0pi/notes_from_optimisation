@@ -1,0 +1,11 @@
+Best: -1265.917160 using {'batch_size': 5, 'epochs': 10}
+Best: -1074.285184 using {'init_mode': 'normal', 'optimizer': 'Adamax'}
+Best: -1031.186798 using {'activation': 'relu', 'neurons1': 25}
+Best: -1300.631455 using {'neurons2': 25}
+
+#for CC0pi events:
+Best: -954.857647 using {'epochs': 100, 'batch_size': 2}
+Best: -439.272481 using {'init_mode': 'lecun_uniform', 'optimizer': 'Adamax'}
+Best: -936.455351 using {'activation': 'softplus', 'neurons1': 50}
+Best: -973.439254 using {'neurons2': 15}
+
