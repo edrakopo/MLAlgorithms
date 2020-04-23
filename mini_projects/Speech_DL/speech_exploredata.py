@@ -8,10 +8,10 @@ import IPython.display as ipd  # To play sound in the notebook
 #import librosa.display
 import os
 
-print(os.listdir("speech-accent-archive/"))
+print(os.listdir("/Users/edrakopo/work/data_miniprojects/speech-accent-archive/"))
 
 #load the data 
-df = pd.read_csv("speech-accent-archive/speakers_all.csv", header=0)
+df = pd.read_csv("/Users/edrakopo/work/data_miniprojects/speech-accent-archive/speakers_all.csv", header=0)
 
 # Check the data
 print(df.shape, 'is the shape of the dataset') 
@@ -46,7 +46,7 @@ print(df.groupby("sex_corr")['age'].describe().head())
 print(df.groupby("file_missing?")['age'].describe().sort_values(by=['count'],ascending=False).head())
 
 #check if we have all audio files - Count the total audio files given
-print("We have ",len([name for name in os.listdir('speech-accent-archive/recordings/recordings/') if os.path.isfile(os.path.join('speech-accent-archive/recordings/recordings', name))])," recordings")
+print("We have ",len([name for name in os.listdir('/Users/edrakopo/work/data_miniprojects/speech-accent-archive/recordings/recordings/') if os.path.isfile(os.path.join('/Users/edrakopo/work/data_miniprojects/speech-accent-archive/recordings/recordings', name))])," recordings")
 
 #Check filename column:
 print(df.groupby("filename")['age'].describe().sort_values(by=['count'],ascending=False).head(10))
@@ -55,8 +55,5 @@ print(df.groupby("filename")['file_missing?'].describe().sort_values(by=['count'
 #command to crosstab the columns:
 #print(pd.crosstab(df['filename'],df['file_missing?']))
 
-#Listen to files:
-fname1 = 'speech-accent-archive/recordings/recordings/' + 'afrikaans1.mp3'
-ipd.Audio(fname1)
 
 
