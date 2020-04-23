@@ -1,0 +1,37 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red127\green127\blue127;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11480\viewh9820\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 1) predict step: move robot \
+add their model to 
+\b predict
+\b0  step: replace the existing model with ours -> u & std have 2 coords: convert to 3 for our case? \
+\
+s=u*t \
+a=Du/Dt\
+s = u0t _ 1/2at**2\
+u=u0 +at\
+\
+2) update step: moves particles -\cf2 > need to use our function because now it\'92s using the distance of the robot from each landmark \
+\cf0 update function uses \expnd0\expndtw0\kerning0
+Sequential Importance Sampling \
+\
+3) estimate step: returns mean & variance to the estimated particles\
+\
+4) neff: determine when to resample by using something called the effective N, which approximately measures the number of particles which meaningfully contribute to the probability distribution\
+\
+5) resample_from_index: Takes an array of weights and returns indexes to the particles that have been chosen for the resampling.\
+\
+6) landmarks -> we don\'92t have landmarks but we have radar positions\
+7) robot_pos -> the true aircraft position: an array as it\'92s for robot\
+Note: items should be the aircraft position measurements & robot_pos += (1,1) must be replaced with an iteration on each row/column of the aircraft position \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+TO DO: \
+* replace landmarks array to radar array\
+* replace sensor std error with an error in radar\
+* set x,y,z limits for particle generation\
+* replace robot_pos to an array of the aircraft actual position & update this in l.145 with the array at this time interval \
+* in predict add clearance command and update equations according to command/lookup tables\
+}
