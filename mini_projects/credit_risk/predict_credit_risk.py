@@ -21,16 +21,11 @@ print(df_credit.nunique())
 print("count risk:"'\n', df_credit['Risk'].value_counts())
 print(df_credit.groupby("Risk")['Age'].describe())
 
-df_good = df_credit.loc[df_credit["Risk"] == 'good']['Age']#.values#.tolist()
-df_bad = df_credit.loc[df_credit["Risk"] == 'bad']['Age']#.values.tolist()
-#df_age = df_credit['Age'].values.tolist()
-#print(df_good.describe())
-
 #replace Risk column with numbers and add a new column. 0:good 1:bad
 df_credit['Risk_num'] = df_credit['Risk'].replace(regex={'good':0, 'bad':1}) 
-#(to_replace="good",value=0, regex=True) #new column:sex_corr
 print(df_credit.head())
 
+#------- plots -------#
 #create heatmap plot for all parameters:
 def pairgrid_heatmap(x, y, **kws):
     cmap = sns.light_palette(kws.pop("color"), as_cmap=True)
@@ -61,3 +56,30 @@ ax = sns.lineplot(x="Duration", y="Credit amount", hue="Risk", data=df_credit)
 plt.subplot(222)
 ax = sns.lineplot(x="Age", y="Job", hue="Risk", data=df_credit)
 plt.show() 
+
+#normalise columns:
+#def norm_data(x):
+#    df.x=((df_credit.x-df_credit.x.min())/(df_credit.x.max()-df_credit.x.min()))#*20
+#    return df.x
+
+#df['trueKE'] = df['trueKE'].apply(lambda x: x*0.01)
+df_credit['Age_norm'] = df_credit['Age']/df_credit['Age'].max()
+df_credit['Credit amount_norm'] = df_credit['Credit amount']/df_credit['Credit amount'].max()
+df_credit['Duration_norm'] = df_credit['Duration']/df_credit['Duration'].max()
+df_credit['Job_norm'] = df_credit['Job']/df_credit['Job'].max()
+print(df_credit.head())
+#normalised dataframe:
+print(df_credit.head())
+
+#boxplot = df_good.boxplot(by='Risk')
+boxplot = df_credit.boxplot(column=['Age_norm','Credit amount_norm','Duration_norm','Job_norm'], by='Risk', layout=(2, 2))
+plt.show()
+
+df_good = df_credit.loc[df_credit["Risk"] == 'good']#.values.tolist()
+df_bad = df_credit.loc[df_credit["Risk"] == 'bad']#.values.tolist()
+#df_age = df_credit['Age'].values.tolist()
+
+#quickly exploring the dataset:
+print(pd.crosstab(df_credit["Checking account"],df_credit.Sex))
+print("- - - - - - - - - - -")
+print(pd.crosstab(df_credit["Risk"], [df_credit["Sex"], df_credit["Checking account"]]))
