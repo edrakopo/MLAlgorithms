@@ -79,7 +79,24 @@ df_good = df_credit.loc[df_credit["Risk"] == 'good']#.values.tolist()
 df_bad = df_credit.loc[df_credit["Risk"] == 'bad']#.values.tolist()
 #df_age = df_credit['Age'].values.tolist()
 
+ax = sns.violinplot(x="Job", y="Credit amount", hue="Risk", split=True, data=df_credit)
+ax.set_title('Violin plot', fontsize=16);
+plt.show()
+
 #quickly exploring the dataset:
 print(pd.crosstab(df_credit["Checking account"],df_credit.Sex))
 print("- - - - - - - - - - -")
 print(pd.crosstab(df_credit["Risk"], [df_credit["Sex"], df_credit["Checking account"]]))
+
+#date_int = ["Purpose", 'Sex']
+#cm = sns.light_palette("green", as_cmap=True)
+#print(pd.crosstab(df_credit[date_int[0]], df_credit[date_int[1]]).style.background_gradient(cmap = cm))
+
+#Looking the total of values in each categorical feature
+print("Purpose : ",df_credit.Purpose.unique())
+print("Sex : ",df_credit.Sex.unique())
+print("Housing : ",df_credit.Housing.unique())
+print("Saving accounts : ",df_credit['Saving accounts'].unique())
+print("Risk : ",df_credit['Risk'].unique())
+print("Checking account : ",df_credit['Checking account'].unique())
+print("Age : ",df_credit['Age'].unique())
