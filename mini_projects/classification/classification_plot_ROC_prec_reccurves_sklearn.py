@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn import datasets as d
 from sklearn import preprocessing
 
-#create an example dataset for binary clasification:
+#create an example dataset for binary clasification (for simplicity x has two features):
 X, y = d.make_classification(n_samples=10000, n_features=2, n_redundant=0, n_informative=2,
                              n_clusters_per_class=1, flip_y=0.2)
 #print("X_data: ",X)
@@ -96,6 +96,6 @@ from sklearn.ensemble import GradientBoostingClassifier
 model = GradientBoostingClassifier(learning_rate=0.1, max_depth=8, n_estimators=100)
 run_model(model, " GradientBoostingClassifier ", 4)
 
-plt.show()
+#plt.show()
 #fig.savefig("ROCcurve_sklearn.png")
 #fig2.savefig("prec_reccurve_sklearn.png")
