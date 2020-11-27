@@ -10,8 +10,16 @@ from sklearn.utils.multiclass import unique_labels
 data = pd.read_csv("predictionsKeras.csv")
 print(data.head())
 class_names=["Background","Signal"] #= data0["11"].values
-print("class_names: ",class_names)
 class_types=["Background","Signal"]
+
+positives = data.loc[(data['Yvalues']==1)]
+print("P: ", data.loc[(data['Yvalues']==1)].shape)
+print("Pred P (TP): ", positives.loc[(data['Prediction']==1)].shape)
+print("False N: ",positives.loc[(data['Prediction']==0)].shape)
+negatives= data.loc[(data['Yvalues']==0)]
+print("N: ", data.loc[(data['Yvalues']==0)].shape)
+print("Pred N (TN): ", negatives.loc[(data['Prediction']==0)].shape)
+print("False P: ",negatives.loc[(data['Prediction']==1)].shape)
 
 #convert strings to numbers: 
 #data1 = data0.replace("muon", 0)
