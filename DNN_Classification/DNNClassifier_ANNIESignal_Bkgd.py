@@ -160,9 +160,10 @@ df = pd.concat([df1,df2], axis=1)
 print(df.head())
 df.to_csv("predictionsKeras.csv")
 
+Y_probs = estimator.predict_proba(Xtest)
 #print("Ytest: ",Ytest[:10]," and predicts ", Ypred[:10])
 #print(type(Xtest)," ",type(Ytest)," Ytest.shape ",Ytest.shape," Ypred.shape ",Ypred.shape)
-fpr_keras, tpr_keras, thresholds_keras = roc_curve(Ytest, Ypred)
+fpr_keras, tpr_keras, thresholds_keras = roc_curve(Ytest, Y_probs[:, 1]) #Ypred)
 #AUC:
 from sklearn.metrics import auc
 
