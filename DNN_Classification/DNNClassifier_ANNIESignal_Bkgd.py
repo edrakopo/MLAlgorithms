@@ -27,6 +27,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
+#from tensorflow.keras.optimizers import SGD
 
 #--------- File with events for reconstruction:
 #--- evts for training:
@@ -102,7 +103,10 @@ def create_model():
     model.add(Dense(25, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
     # Compile model
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    #opt=SGD(lr=0.01, momentum=0.9)
+    opt = keras.optimizers.Adam(learning_rate=0.01)
+    model.compile(loss='binary_crossentropy', optimizer=opt, metrics=['accuracy'])
+    #model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
 
 #keras_model = create_model()
@@ -133,9 +137,10 @@ filepath="weights_bets.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_best_only=True, save_weights_only=True, mode='auto')
 callbacks_list = [checkpoint]
 # Fit the model
-history = estimator.fit(X, encoded_Y, validation_split=0.33, epochs=20, batch_size=5, callbacks=callbacks_list, verbose=0)
+history = estimator.fit(X, encoded_Y, validation_split=0.33, epochs=30, batch_size=5, callbacks=callbacks_list, verbose=0)
+#I can add: validation_data=(testX,testy) instead of validation_split
 
-# summarize history for loss
+# summarize history for accuracy:
 f, ax2 = plt.subplots(1,1)
 ax2.plot(history.history['accuracy'])
 ax2.plot(history.history['val_accuracy'])
@@ -144,7 +149,18 @@ ax2.set_ylabel('Performance')
 ax2.set_xlabel('Epochs')
 #ax2.set_xlim(0.,10.)
 ax2.legend(['train', 'test'], loc='upper left')
-plt.savefig("keras_train_test.pdf")
+plt.savefig("keras_train_testAcc.pdf")
+
+# summarize history for loss
+f, ax2 = plt.subplots(1,1)
+ax2.plot(history.history['loss'], label='train')
+ax2.plot(history.history['val_loss'], label='test')
+ax2.set_title('model loss')
+ax2.set_ylabel('Performance')
+ax2.set_xlabel('Epochs')
+#ax2.set_xlim(0.,10.)
+#ax2.legend(['train', 'test'], loc='upper left')
+plt.savefig("keras_train_testLoss.pdf")
 
 #ROC curve:
 from sklearn.metrics import roc_curve
@@ -163,7 +179,7 @@ df.to_csv("predictionsKeras.csv")
 Y_probs = estimator.predict_proba(Xtest)
 #print("Ytest: ",Ytest[:10]," and predicts ", Ypred[:10])
 #print(type(Xtest)," ",type(Ytest)," Ytest.shape ",Ytest.shape," Ypred.shape ",Ypred.shape)
-fpr_keras, tpr_keras, thresholds_keras = roc_curve(Ytest, Y_probs[:, 1]) #Ypred)
+fpr_keras, tpr_keras, thresholds_keras = roc_curve(Ytest, Y_probs[:, 1], pos_label =1) #Ypred)
 #AUC:
 from sklearn.metrics import auc
 
@@ -179,3 +195,4 @@ ax1.legend(loc='best')
 plt.savefig("ROC_curve.pdf")
 #plt.show()
 
+print(metrics.classification_report(Ytest, Ypred))
