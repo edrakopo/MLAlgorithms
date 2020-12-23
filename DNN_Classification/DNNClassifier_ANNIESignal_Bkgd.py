@@ -33,9 +33,12 @@ from sklearn.pipeline import Pipeline
 #--- evts for training:
 #infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd2.csv"
 #infile0 = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd.csv"
-#---protmpt evts for signal:
+#--- prompt evts for signal:
 infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_prompt2.csv"
 infile0 = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd_prompt.csv"
+#--- delayed evts for signal+Bkgd:
+#infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_del2.csv"
+#infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd_del.csv"
 
 # Set TF random seed to improve reproducibility
 seed = 150
@@ -52,6 +55,7 @@ trainX = np.array(data[:3000]) #variables to train
 testX = np.array(data[3000:]) #variables to test
 print("trainX[0]: ",trainX[0])
 print(trainX.shape)
+print("testX[0]: ",testX[0])
 #print("All columns are: ", data.columns.values.tolist())
 
 dataY00 = pd.read_csv(infile0)
@@ -96,12 +100,15 @@ encoded_Y = encoder.transform(Y)
 def create_model():
     # create model
     model = Sequential()
-    #model.add(Dense(800, input_dim=1500, activation='relu'))
-    #model.add(Dense(100, activation='relu'))
-    #model.add(Dense(30, activation='relu'))
+    #for prompt events
     model.add(Dense(50, input_dim=1500, activation='relu'))
     model.add(Dense(25, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
+    '''#fordelayed events
+    model.add(Dense(40, input_dim=1500, activation='relu'))
+    model.add(Dense(20, activation='relu'))
+    model.add(Dense(1, activation='sigmoid'))
+    '''
     # Compile model
     #opt=SGD(lr=0.01, momentum=0.9)
     opt = keras.optimizers.Adam(learning_rate=0.01)
@@ -111,8 +118,9 @@ def create_model():
 
 #keras_model = create_model()
 #keras_model.fit(trainX, Y, epochs=100, batch_size=10, verbose=1)
-estimator = KerasClassifier(build_fn=create_model, epochs=20, batch_size=5, verbose=0)
-estimator.fit(X,encoded_Y,verbose=0)
+#estimator = KerasClassifier(build_fn=create_model, epochs=20, batch_size=5, verbose=0)#for prompt events
+estimator = KerasClassifier(build_fn=create_model, epochs=15, batch_size=10, verbose=0)
+#estimator.fit(X,encoded_Y,verbose=0)
 '''
 #evaluate this model using stratified cross validation in the scikit-learn
 #estimator = KerasClassifier(build_fn=create_model, epochs=100, batch_size=5, verbose=0)
@@ -196,3 +204,15 @@ plt.savefig("ROC_curve.pdf")
 #plt.show()
 
 print(metrics.classification_report(Ytest, Ypred))
+
+#print variables in csv for checks:
+assert(testX.shape[0]==len(Ypred))
+ydata = np.concatenate((Ytest,Ypred),axis=1)
+df=pd.DataFrame(ydata, columns=['TrueY','Predicted'])
+print(df.head())
+df_final = data[3000:]
+df_final.insert(1500, 'TrueY', df['TrueY'].values, allow_duplicates="True")
+df_final.insert(1501, 'Predicted', df['Predicted'].values, allow_duplicates="True")
+print(df_final.head())
+df_final.to_csv("predicted_data.csv", float_format = '%.3f', index=False)
+
