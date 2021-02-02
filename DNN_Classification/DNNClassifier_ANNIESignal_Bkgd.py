@@ -33,14 +33,15 @@ from sklearn.pipeline import Pipeline
 #--- evts for training:
 #infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd2.csv"
 #infile0 = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd.csv"
+infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_BkgdNEW2.csv"
+infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_BkgdNEW.csv"
+ 
 #--- prompt evts for signal:
 #infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_prompt2.csv"
 #infile0 = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd_prompt.csv"
 #--- delayed evts for signal+Bkgd:
-#infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_del2.csv"
-#infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd_del.csv"
-infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_BkgdNEW2.csv"
-infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_BkgdNEW.csv"
+infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_delNEW2.csv"
+infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd_delNEW.csv"
 
 # Set TF random seed to improve reproducibility
 seed = 150
@@ -53,15 +54,18 @@ print( "--- opening file with input variables!")
 #print("evts for training in: ",filein)
 data = pd.read_csv(infile,header=None,names=range(1500)).fillna(0)
 print(data.head())
-trainX = np.array(data[:3000]) #variables to train
-testX = np.array(data[3000:]) #variables to test
+#trainX = np.array(data[:3000]) #variables to train
+#testX = np.array(data[3000:]) #variables to test
+trainX = np.array(data[:10000]) #variables to train
+testX = np.array(data[10000:]) #variables to test
 print("trainX[0]: ",trainX[0])
 print(trainX.shape)
 print("testX[0]: ",testX[0])
 #print("All columns are: ", data.columns.values.tolist())
 
 dataY00 = pd.read_csv(infile0)
-dataY0 = np.array(dataY00[:3000])
+#dataY0 = np.array(dataY00[:3000])
+dataY0 = np.array(dataY00[:10000])
 #rest, Y = np.split(dataY0,[6],axis=1)
 rest, Y = np.split(dataY0,[7],axis=1)
 print("before Y.shape ",Y.shape)
@@ -69,7 +73,8 @@ Y=Y.reshape(-1)
 print("after: ",Y.shape)
 print("Y: ",Y[0:10])
 
-dataYtest = np.array(dataY00[3000:])
+#dataYtest = np.array(dataY00[3000:])
+dataYtest = np.array(dataY00[10000:])
 #rest1, Ytest = np.split(dataYtest,[6],axis=1)
 rest1, Ytest = np.split(dataYtest,[7],axis=1)
 Ytest=Ytest.reshape(-1)
@@ -214,7 +219,8 @@ assert(testX.shape[0]==len(Ypred))
 ydata = np.concatenate((Ytest,Ypred),axis=1)
 df=pd.DataFrame(ydata, columns=['TrueY','Predicted'])
 print(df.head())
-df_final = data[3000:]
+#df_final = data[3000:]
+df_final = data[10000:]
 df_final.insert(1500, 'TrueY', df['TrueY'].values, allow_duplicates="True")
 df_final.insert(1501, 'Predicted', df['Predicted'].values, allow_duplicates="True")
 print(df_final.head())
