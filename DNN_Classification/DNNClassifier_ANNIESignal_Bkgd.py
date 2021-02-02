@@ -34,11 +34,13 @@ from sklearn.pipeline import Pipeline
 #infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd2.csv"
 #infile0 = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd.csv"
 #--- prompt evts for signal:
-infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_prompt2.csv"
-infile0 = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd_prompt.csv"
+#infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_prompt2.csv"
+#infile0 = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd_prompt.csv"
 #--- delayed evts for signal+Bkgd:
 #infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_del2.csv"
 #infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd_del.csv"
+infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_BkgdNEW2.csv"
+infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_BkgdNEW.csv"
 
 # Set TF random seed to improve reproducibility
 seed = 150
@@ -60,14 +62,16 @@ print("testX[0]: ",testX[0])
 
 dataY00 = pd.read_csv(infile0)
 dataY0 = np.array(dataY00[:3000])
-rest, Y = np.split(dataY0,[6],axis=1)
+#rest, Y = np.split(dataY0,[6],axis=1)
+rest, Y = np.split(dataY0,[7],axis=1)
 print("before Y.shape ",Y.shape)
 Y=Y.reshape(-1)
 print("after: ",Y.shape)
-print("Y: ",Y[0])
+print("Y: ",Y[0:10])
 
 dataYtest = np.array(dataY00[3000:])
-rest1, Ytest = np.split(dataYtest,[6],axis=1)
+#rest1, Ytest = np.split(dataYtest,[6],axis=1)
+rest1, Ytest = np.split(dataYtest,[7],axis=1)
 Ytest=Ytest.reshape(-1)
 
 # Scale data (training set) to 0 mean and unit standard deviation.
