@@ -8,8 +8,8 @@ import tempfile
 import random
 import csv
 import matplotlib
-#matplotlib.use('Agg')
-matplotlib.use('TkAgg')
+matplotlib.use('Agg')
+#matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from array import array
 from sklearn import datasets
@@ -33,8 +33,8 @@ from sklearn.pipeline import Pipeline
 #--- evts for training:
 #infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd2.csv"
 #infile0 = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_Bkgd.csv"
-infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_BkgdNEW2.csv"
-infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_BkgdNEW.csv"
+#infile = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_BkgdNEW2.csv"
+#infile0 = "/Users/edrakopo/work/ANNIETools_ntuples/ANNIETools/ANNIENtupleAnalysis/util/labels_DNN_Signal_BkgdNEW.csv"
  
 #--- prompt evts for signal:
 #infile = "/Users/edrakopo/work/ANNIETools/ANNIENtupleAnalysis/util/vars_DNN_Signal_Bkgd_prompt2.csv"
