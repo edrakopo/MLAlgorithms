@@ -1,0 +1,153 @@
+#---
+------ Algorithm: XGBoost
+
+ Best estimator:
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=0.7,
+              enable_categorical=False, gamma=0.5, gpu_id=-1,
+              importance_type=None, interaction_constraints='',
+              learning_rate=0.15, max_delta_step=0, max_depth=3,
+              min_child_weight=5, missing=nan, monotone_constraints='()',
+              n_estimators=500, n_jobs=2, nthread=2, num_parallel_tree=1,
+              predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1,
+              scale_pos_weight=0.1229986307129996, subsample=1.0,
+              tree_method='exact', validate_parameters=1, verbosity=None)
+
+ Best normalized gini score for 3-fold search with 5 parameter combinations:
+0.9893840444090101
+
+ Best hyperparameters:
+{'subsample': 1.0, 'n_estimators': 500, 'min_child_weight': 5, 'max_depth': 3, 'max_delta_step': 0, 'learning_rate': 0.15, 'gamma': 0.5, 'colsample_bytree': 0.7}
+
+
+-------------------------- when using AUC for evaluation
+------ Algorithm: XGBoost
+
+ Best estimator:
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=0.7,
+              enable_categorical=False, gamma=0.5, gpu_id=-1,
+              importance_type=None, interaction_constraints='',
+              learning_rate=0.15, max_delta_step=0, max_depth=3,
+              min_child_weight=5, missing=nan, monotone_constraints='()',
+              n_estimators=500, n_jobs=2, nthread=2, num_parallel_tree=1,
+              predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1,
+              scale_pos_weight=0.1229986307129996, subsample=1.0,
+              tree_method='exact', validate_parameters=1, verbosity=None)
+
+ Best normalized gini score for 3-fold search with 5 parameter combinations:
+0.9893840444090101
+
+ Best hyperparameters:
+{'subsample': 1.0, 'n_estimators': 500, 'min_child_weight': 5, 'max_depth': 3, 'max_delta_step': 0, 'learning_rate': 0.15, 'gamma': 0.5, 'colsample_bytree': 0.7}
+----------------------------------------------
+
+
+-------------------------- when using error/log_loss for evaluation
+------ Algorithm: XGBoost
+
+ Best estimator:
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=1.0,
+              enable_categorical=False, gamma=1.5, gpu_id=-1,
+              importance_type=None, interaction_constraints='',
+              learning_rate=0.25, max_delta_step=2, max_depth=6,
+              min_child_weight=5, missing=nan, monotone_constraints='()',
+              n_estimators=670, n_jobs=2, nthread=2, num_parallel_tree=1,
+              predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1,
+              scale_pos_weight=0.1229986307129996, subsample=0.6,
+              tree_method='exact', validate_parameters=1, verbosity=None)
+
+ Best normalized gini score for 3-fold search with 5 parameter combinations:
+0.935974982512447
+
+ Best hyperparameters:
+{'subsample': 0.6, 'n_estimators': 670, 'min_child_weight': 5, 'max_depth': 6, 'max_delta_step': 2, 'learning_rate': 0.25, 'gamma': 1.5, 'colsample_bytree': 1.0}
+----------------------------------------------
+
+[649]	validation_0-error:0.01400	validation_0-logloss:0.04230	validation_1-error:0.01853	validation_1-logloss:0.05023
+------ Algorithm: XGBoost
+
+ Best estimator:
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=0.7,
+              enable_categorical=False, gamma=2, gpu_id=-1,
+              importance_type=None, interaction_constraints='',
+              learning_rate=0.2, max_delta_step=0, max_depth=5,
+              min_child_weight=1, missing=nan, monotone_constraints='()',
+              n_estimators=650, n_jobs=1, nthread=1, num_parallel_tree=1,
+              predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1,
+              scale_pos_weight=0.1229986307129996, silent=True, subsample=0.9,
+              tree_method='exact', validate_parameters=1, verbosity=None)
+
+ Best normalized gini score for 3-fold search with 5 parameter combinations:
+0.9514188920435063
+
+ Best hyperparameters:
+{'subsample': 0.9, 'n_estimators': 650, 'min_child_weight': 1, 'max_depth': 5, 'max_delta_step': 0, 'learning_rate': 0.2, 'gamma': 2, 'colsample_bytree': 0.7}
+
+##########-------------------
+------ Algorithm: XGBoost
+
+ Best estimator:
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=0.7,
+              enable_categorical=False, gamma=2, gpu_id=-1,
+              importance_type=None, interaction_constraints='',
+              learning_rate=0.2, max_delta_step=0, max_depth=5,
+              min_child_weight=1, missing=nan, monotone_constraints='()',
+              n_estimators=650, n_jobs=1, nthread=1, num_parallel_tree=1,
+              predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1,
+              scale_pos_weight=0.1229986307129996, silent=True, subsample=0.9,
+              tree_method='exact', validate_parameters=1, verbosity=None)
+
+ Best normalized gini score for 3-fold search with 5 parameter combinations:
+0.99477349798359
+
+ Best hyperparameters:
+{'subsample': 0.9, 'n_estimators': 650, 'min_child_weight': 1, 'max_depth': 5, 'max_delta_step': 0, 'learning_rate': 0.2, 'gamma': 2, 'colsample_bytree': 0.7}
+
+
+##########------------------- 
+
+##########------------------- BEFORE: -------------------###########
+------ Algorithm: XGBoost
+ Best estimator:
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=0.8,
+              enable_categorical=False, gamma=2, gpu_id=-1,
+              importance_type=None, interaction_constraints='',
+              learning_rate=0.2, max_delta_step=0, max_depth=4,
+              min_child_weight=5, missing=nan, monotone_constraints='()',
+              n_estimators=700, n_jobs=1, nthread=1, num_parallel_tree=1,
+              predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1,
+              scale_pos_weight=1, silent=True, subsample=0.8,
+              tree_method='exact', validate_parameters=1, verbosity=None)
+
+ Best normalized gini score for 3-fold search with 5 parameter combinations:
+0.9953533426947601
+
+ Best hyperparameters:
+{'subsample': 0.8, 'n_estimators': 700, 'min_child_weight': 5, 'max_depth': 4, 'learning_rate': 0.2, 'gamma': 2, 'colsample_bytree': 0.8}
+----------------------------------------------
+
+
+------ Algorithm: XGBoost
+
+ Best estimator:
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bynode=1, colsample_bytree=0.6,
+              enable_categorical=False, gamma=0.5, gpu_id=-1,
+              importance_type=None, interaction_constraints='',
+              learning_rate=0.05, max_delta_step=0, max_depth=4,
+              min_child_weight=10, missing=nan, monotone_constraints='()',
+              n_estimators=600, n_jobs=1, nthread=1, num_parallel_tree=1,
+              predictor='auto', random_state=0, reg_alpha=0, reg_lambda=1,
+              scale_pos_weight=1, silent=True, subsample=0.8,
+              tree_method='exact', validate_parameters=1, verbosity=None)
+
+ Best normalized gini score for 3-fold search with 5 parameter combinations:
+0.9873442773554182
+
+ Best hyperparameters:
+{'subsample': 0.8, 'n_estimators': 600, 'min_child_weight': 10, 'max_depth': 4, 'learning_rate': 0.05, 'gamma': 0.5, 'colsample_bytree': 0.6}

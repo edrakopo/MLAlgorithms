@@ -7,16 +7,18 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 from sklearn.utils.multiclass import unique_labels
 
-data0 = pd.read_csv("predictions/GradientBoosting_predictions_single_noVarSkewKurt.csv")
-print(data0.head())
-class_names = data0["11"].values
+#data = pd.read_csv("results_600estimators/predictions_XGBoost_3percent.csv")
+data = pd.read_csv("XGBoost.csv")
+print(data.head())
+#print(data[:20])
+class_names = data["label"].values
 print("class_names: ",class_names)
-class_types=["muon","electron"]
+class_types=["Atm Muons","Neutrinos"]
 
 #convert strings to numbers: 
-data1 = data0.replace("muon", 0)
-data = data1.replace("electron", 1)
-print(data.head())
+#data1 = data0.replace("muon", 0)
+#data = data1.replace("electron", 1)
+#print(data.head())
 
 def plot_confusion_matrix(y_true, y_pred, classes,
                           normalize=False,
@@ -76,22 +78,19 @@ def plot_confusion_matrix(y_true, y_pred, classes,
 
 np.set_printoptions(precision=2)
 
-print("data[11]:")
-print(data["11"])
+print("data[label]:")
+print(data["label"])
 print("data[Prediction]:")
 print(data["Prediction"])
 print(class_names[0])
 print(class_names[1])
-print(class_names[2])
-print(class_names[3])
-print(class_names[4])
-print(class_names[5])
+
 # Plot non-normalized confusion matrix
-plot_confusion_matrix(data["11"], data["Prediction"], classes=class_names,
+plot_confusion_matrix(data["label"], data["Prediction"], classes=class_names,
                       title='Gradient Boosting Confusion matrix, without normalization')
 
 # Plot normalized confusion matrix
-plot_confusion_matrix(data["11"], data["Prediction"], classes=class_names, normalize=True,
+plot_confusion_matrix(data["label"], data["Prediction"], classes=class_names, normalize=True,
                       title='Gradient Boosting Normalized confusion matrix')
 
 plt.show()
