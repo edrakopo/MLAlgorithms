@@ -6,8 +6,10 @@ from sklearn import svm, datasets
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 from sklearn.utils.multiclass import unique_labels
+import teal_cuts as tc
 
-data = pd.read_csv("predictionsKeras.csv")
+#data = pd.read_csv("predictionsKeras.csv")
+data = pd.read_csv("predictionsKeras_evaluate.csv")
 print(data.head())
 class_names=["Background","Signal"] #= data0["11"].values
 class_types=["Background","Signal"]
@@ -20,6 +22,7 @@ negatives= data.loc[(data['Yvalues']==0)]
 print("N: ", data.loc[(data['Yvalues']==0)].shape)
 print("Pred N (TN): ", negatives.loc[(data['Prediction']==0)].shape)
 print("False P: ",negatives.loc[(data['Prediction']==1)].shape)
+
 
 #convert strings to numbers: 
 #data1 = data0.replace("muon", 0)
@@ -75,9 +78,9 @@ def plot_confusion_matrix(y_true, y_pred, classes,
     thresh = cm.max() / 2.
     for i in range(cm.shape[0]):
         for j in range(cm.shape[1]):
-            ax.text(j, i, format(cm[i, j], fmt),
+            ax.text(j,i, format(cm[i, j], fmt),
                     ha="center", va="center",
-                    color="white" if cm[i, j] > thresh else "black")
+                    color="White" if cm[i, j] > thresh else "black")
     fig.tight_layout()
     return ax
 
@@ -97,9 +100,39 @@ np.set_printoptions(precision=2)
 # Plot non-normalized confusion matrix
 plot_confusion_matrix(data["Yvalues"], data["Prediction"], classes=class_names,
                       title='Confusion matrix without normalization')
-
+plt.savefig('plot_confusion_matrix.png')
 # Plot normalized confusion matrix
 plot_confusion_matrix(data["Yvalues"], data["Prediction"], classes=class_names, normalize=True,
                       title=' Normalized confusion matrix')
-
+plt.savefig('plot_confusion_matrix_norm.png')
 plt.show()
+
+#print(ytrue.shape)
+
+#dataTeal= tc.cuts() #code explained inside the script
+'''
+dataTeal0 = pd.read_csv('~/git/ANNIETools/ANNIENtupleAnalysis/util/Signal_quality_cuts_sample.csv')
+dataTeal1 = pd.read_csv('~/git/ANNIETools/ANNIENtupleAnalysis/util/Bkgd_quality_cuts_sample.csv')
+dataTeal = pd.concat((dataTeal0, dataTeal1))
+
+
+
+plot_confusion_matrix(dataTeal['TrueY'], dataTeal['Predicted'], classes=class_names,
+                      title='Confusion matrix without normalization - Teal Cuts')
+plt.savefig('plot_confusion_matrixTEAL.png')
+# Plot normalized confusion matrix
+plot_confusion_matrix(dataTeal['TrueY'], dataTeal['Predicted'], classes=class_names, normalize=True,
+                      title=' Normalized confusion matrix - Teal Cuts')
+plt.savefig('plot_confusion_matrix_normTEAL.png')
+
+'''
+'''
+plot_confusion_matrix(dataTeal['TrueY'], dataTeal['Clean'], classes=class_names,
+                      title='Confusion matrix without normalization - Teal Cuts')
+plt.savefig('plot_confusion_matrixTEAL.png')
+# Plot normalized confusion matrix
+plot_confusion_matrix(dataTeal['TrueY'], dataTeal['Clean'], classes=class_names, normalize=True,
+                      title=' Normalized confusion matrix - Teal Cuts')
+plt.savefig('plot_confusion_matrix_normTEAL.png')
+plt.show()
+'''

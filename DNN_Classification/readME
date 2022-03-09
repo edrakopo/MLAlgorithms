@@ -1,0 +1,7 @@
+run DNNClassifier, set the name of the weights on line 120
+go to DNN_evauate_cleaned, set the weights load name on line 98-106 
+run DNN_evaluate_cleaned
+2 csv files have been created, now depending on what you want:
+run plot_confusion_matrix 
+OR run evaluated_data_plot. you have 2 options for the evaluated data from 'DNN_evaluate_cleaned', and for the predicted data from DNNClassifier
+run 
