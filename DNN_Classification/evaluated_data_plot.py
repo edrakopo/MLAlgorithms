@@ -73,8 +73,8 @@ if __name__=='__main__':
     
     TSig = Sdf.loc[(data['Predicted']==1)]  #select signal events predicted as signal
     FSig = Bdf.loc[(data['Predicted']==1)]  #select signal events predicted as background
-    TBkgd = Bdf.loc[(data['Predicted']==0)] #select bacground events predicted as background
-    FBkgd = Sdf.loc[(data['Predicted']==0)] #select bacground events predicted as signal
+    TBkgd = Bdf.loc[(data['Predicted']==0)] #select background events predicted as background
+    FBkgd = Sdf.loc[(data['Predicted']==0)] #select background events predicted as signal
     
     
     
@@ -121,8 +121,8 @@ if __name__=='__main__':
     noapbkgd2 = FBkgd.loc[(FBkgd['2']>10000)].reset_index(drop=True)
     noapbkgdF = pd.concat((noapbkgd1,noapbkgd2))
     
-    gulag = noapbkgdF.loc[noapbkgdF['2']<1200].reset_index(drop=True) #cuts to test the low cb -low clustertime false backgroud(former signal)---cosmics THEY ARE
-    gulag = gulag.loc[gulag['5']<0.15].reset_index(drop=True)
+    cosmics = noapbkgdF.loc[noapbkgdF['2']<1200].reset_index(drop=True) #cuts to test the low cb -low clustertime false backgroud(former signal)---cosmics THEY ARE
+    cosmics = gulag.loc[gulag['5']<0.15].reset_index(drop=True)
     
     spitfire = NoapsignalT.loc[NoapsignalT['5']>=0.6].reset_index(drop=True) #cuts to test the high cb low clustertime of signal, probably afterpulses
     spitfire = spitfire.loc[spitfire['2']<1200].reset_index(drop=True)
