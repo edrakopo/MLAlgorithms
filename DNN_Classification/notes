@@ -1,2 +1,18 @@
+CSV files are at Lilia's Google Drive: https://drive.google.com/drive/u/1/folders/1H1jVAMqXe12LawthOnRe9zcpKSAFWnya 
+
 DNN_mix_grill_all_cb.csv   DNN_mix_grill_all_cb_noqt.csv small.csv 
 τα mix grill ειναι μεικτα και βγαινει απο το combine csv ,10% του αρχικου σημaτος, 10% του background. Κατι τετοιο. Αυτο που εχει το noqt δεν εχει τα quotes, εχω τρέξει δλδ το remove_quotes.sh
+
+Το small εχει μεγεθος 70κ περιπου, εχει ολο το background απο αυτο: labels_DNN_Bkgd_highCB_train.csv, και 35κ απο αυτο: labels_DNN_Signal_lowCB_train.csv (που αυτό ειναι σημα)
+Το small2 ειναι το ιδιο χωρις quotes
+
+Ta labels einai αυτα, σε ολα:
+eventNumber
+eventTimeTank
+clusterTime
+clusterPE
+clusterMaxPE
+clusterChargeBalance
+clusterHits
+hitPE
+hitDetID
