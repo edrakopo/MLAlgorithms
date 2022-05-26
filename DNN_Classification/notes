@@ -1,0 +1,2 @@
+DNN_mix_grill_all_cb.csv   DNN_mix_grill_all_cb_noqt.csv small.csv 
+τα mix grill ειναι μεικτα και βγαινει απο το combine csv ,10% του αρχικου σημaτος, 10% του background. Κατι τετοιο. Αυτο που εχει το noqt δεν εχει τα quotes, εχω τρέξει δλδ το remove_quotes.sh
